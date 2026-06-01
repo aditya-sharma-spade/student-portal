@@ -182,3 +182,25 @@
     border-right-color: var(--border);
   }
 }
+input{
+width:200px;
+height:20px;
+margin:1%;
+align-items: center;
+}
+.submitbutton{
+width:208px;
+height:22.5px;
+margin:1%;
+}
+.otherbutton{
+
+  width: 150px;
+  height:20px;
+  margin-top: 50px ;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
