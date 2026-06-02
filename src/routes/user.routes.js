@@ -5,7 +5,7 @@ const userrepo= AppDatasource.getRepository("User")
 
 router.post("/add", async (req,res)=>{
 try{
-    
+      
     await userrepo.save({
       name: req.body.name,
       age: req.body.age,
@@ -44,7 +44,7 @@ catch(error){
 })
 
 
-router.patch("/update/:index", async(req,res)=>{
+router.patch("/update/:index", async(req,res)=>{  //some entry is replaced
 try{ 
     const vari= req.params.index
 
@@ -62,7 +62,7 @@ catch(error){
  )
 }
 })
-router.put("/update/:index", async(req,res)=>{
+router.put("/update/:index", async(req,res)=>{ //entire request is replaced
    try{
   const vari= req.params.index
   await userrepo.update(vari,req.body)
