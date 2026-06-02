@@ -17,6 +17,7 @@ const handledelete = async ()=>{
      }
 
     )
+    setid("");
 }
 
 
@@ -28,14 +29,14 @@ console.log(error.message)
 
     return(
         <>
-         <button type="button" onClick={handledelete} className="otherbutton">Delete data</button>
-        <input  type="Number" placeholder="Enter userid to delete" value={id}
+         <div>
+        <input  type="Number" placeholder="Enter userid to delete" value={id} 
         onChange={(e)=>{
          setid(e.target.value)
         }}
         />
-        
-        
+          <button type="button" onClick={handledelete} className="otherbutton">Delete data</button>
+        </div>
         
         
         </>

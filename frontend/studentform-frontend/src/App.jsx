@@ -4,17 +4,35 @@ import PostDetails from './components/postdetails.jsx'
 import SeeUsers from './components/seeusers.jsx'
 import UpdateDetails from './components/updatedetails.jsx'
 import DeleteUsers from './components/deleteusers.jsx'
+
 function App() {
+  const[page,setpage]=useState("add")
 return(
   <>
+  <div className='Navbar'>
+  <button className="Navbutton" onClick={()=>setpage("add")}>
+    Add User
+  </button>
+   <button className="Navbutton" onClick={()=>setpage("update")}>
+    Update User Details
+   </button>
+ <button className="Navbutton" onClick={()=>setpage("get")}>
+  See all users
+ </button>
+ <button className="Navbutton" onClick={()=>setpage("delete")}>
+  Delete user details
+ </button>
+  </div>
+  
   <div className='container'>
-  <PostDetails />
+  {page==="add" && <PostDetails />}
  
-  <SeeUsers />
+  {page==="get" && <SeeUsers />}
 
-  <UpdateDetails />
+  {page==="update" && <UpdateDetails />}
 
-  <DeleteUsers />
+  {page==="delete" && <DeleteUsers />}
+
  </div>
  </>
   )

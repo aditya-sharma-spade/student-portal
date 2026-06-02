@@ -30,7 +30,10 @@ const handleupdate = async(e)=>{
           body:JSON.stringify(updates),
     })
        const data= await response.json();
-       
+       setid("")
+       setage("")
+       setname("")
+       setemail("")
     }
     catch(error){
      console.log(error.message)
@@ -40,10 +43,7 @@ const handleupdate = async(e)=>{
     return(
         <>
         
-        <button type="button" className="otherbutton" onClick={handleupdate}>
-         Update your details
         
-        </button>
         <input type="Number" placeholder="Enter your Id" value={id}
         onChange={(e)=>{
          setid(e.target.value)
@@ -65,6 +65,9 @@ const handleupdate = async(e)=>{
             setemail(e.target.value)
         }}
         />
+         <button type="button" className="otherbutton" onClick={handleupdate}>
+         Update your details
+        </button>
         </>
     )
 }
