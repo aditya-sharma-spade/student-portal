@@ -4,7 +4,7 @@ function SeeUsers({gotoadd}){
   const [users,setUsers]=useState([]);
  const[selecteduser,setselecteduser]=useState(null);
   
-  const handleusers= async(e)=>{
+  const handleusers= async()=>{
    
     try{
     const response= await fetch("http://localhost:3000/users/see");
