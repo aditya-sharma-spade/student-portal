@@ -13,21 +13,17 @@ return(
   <button className="Navbutton" onClick={()=>setpage("add")}>
     Add User
   </button>
-   <button className="Navbutton" onClick={()=>setpage("update")}>
-    Update User Details
-   </button>
+
  <button className="Navbutton" onClick={()=>setpage("get")}>
   See all users
  </button>
- <button className="Navbutton" onClick={()=>setpage("delete")}>
-  Delete user details
- </button>
+ 
   </div>
   
   <div className='container'>
   {page==="add" && <PostDetails />}
  
-  {page==="get" && <SeeUsers />}
+  {page==="get" && (<SeeUsers gotoadd={()=>setpage("add")} />)}
 
   {page==="update" && <UpdateDetails />}
 

@@ -1,12 +1,18 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 
 
-function UpdateDetails(){
-const[name,setname]=useState("")
-const[email,setemail]=useState("")
-const[age,setage]=useState("")
-const[id,setid]=useState("")
+function UpdateDetails({user,refreshusers}){
+const[name,setname]=useState(user.name)
+const[email,setemail]=useState(user.email)
+const[age,setage]=useState(user.age)
+
  
+useEffect(()=>{
+  setname(user.name)
+  setemail(user.email)
+  setage(user.age)
+  
+},[user])
 const handleupdate = async(e)=>{
     try{
        const updates={}
@@ -22,7 +28,7 @@ const handleupdate = async(e)=>{
     updates.age = age;
   }
 
-        const response= await fetch(`http://localhost:3000/users/update/${id}`,{
+        const response= await fetch(`http://localhost:3000/users/update/${user.id}`,{
           method:"PATCH",
           headers:{
             "Content-Type":"application/json"
@@ -30,10 +36,10 @@ const handleupdate = async(e)=>{
           body:JSON.stringify(updates),
     })
        const data= await response.json();
-       setid("")
-       setage("")
-       setname("")
-       setemail("")
+      
+      
+
+       await refreshusers();
     }
     catch(error){
      console.log(error.message)
@@ -44,12 +50,6 @@ const handleupdate = async(e)=>{
         <>
         
         
-        <input type="Number" placeholder="Enter your Id" value={id}
-        onChange={(e)=>{
-         setid(e.target.value)
-        }
-        }
-        />
         <input type="text" placeholder="Change name to" value={name}
          onChange={(e)=>{
             setname(e.target.value)
@@ -68,6 +68,7 @@ const handleupdate = async(e)=>{
          <button type="button" className="otherbutton" onClick={handleupdate}>
          Update your details
         </button>
+        
         </>
     )
 }
