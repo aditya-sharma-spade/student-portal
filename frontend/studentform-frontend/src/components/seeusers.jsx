@@ -5,9 +5,14 @@ function SeeUsers({gotoadd}){
  const[selecteduser,setselecteduser]=useState(null);
   
   const handleusers= async()=>{
-   
+    const token =
+    localStorage.getItem("token");
     try{
-    const response= await fetch("http://localhost:3000/users/see");
+    const response= await fetch("http://localhost:3000/students/see",{
+    headers:{
+         Authorization:
+            `Bearer ${token}`
+      }})
     const data= await response.json();
     setUsers(data.entries)
     
@@ -22,11 +27,15 @@ catch(error){
     handleusers();
   },[])
   const handledelete= async(id)=>{
+     const token =
+    localStorage.getItem("token");
     try{
-     const response= await fetch( `http://localhost:3000/users/delete/${id}`,
+     const response= await fetch( `http://localhost:3000/students/delete/${id}`,
         
         { headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization:
+            `Bearer ${token}`
        },
             method:"DELETE"
         }
@@ -42,7 +51,7 @@ catch(error){
 return(
         <>
         <button className="adduser" onClick={gotoadd}>
-            Add Users
+            Add Students
         </button>
           {selecteduser && (
       <UpdateDetails user={selecteduser} refreshusers={handleusers}/>
@@ -71,7 +80,7 @@ return(
             <td> {user.age} </td>
             <td>{user.email}</td>
             <td> <button className="action-btn" onClick={()=>setselecteduser(user)}>Edit</button>
-             <button className="action-btn" onClick={()=>handledelete(user.id)}>Delete</button></td>
+             <button className="delete-btn" onClick={()=>handledelete(user.id)}>Delete</button></td>
             </tr>
             )
         }

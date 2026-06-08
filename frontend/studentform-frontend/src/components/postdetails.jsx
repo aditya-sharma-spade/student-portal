@@ -7,14 +7,17 @@ const[email,setemail]=useState("");
 const[age,setage]=useState("");
 
 const handlesubmit = async(e)=>{
-
+ const token =
+    localStorage.getItem("token");
 e.preventDefault();
 try{
-  const response= await fetch("http://localhost:3000/users/add",
+  const response= await fetch("http://localhost:3000/students/add",
     {
       method: "POST",
      headers:{
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization:
+            `Bearer ${token}`
      },
      body:JSON.stringify({
       name,
@@ -39,7 +42,7 @@ catch(error){
   return (
  <>
  <div>
-<h1> User form</h1>
+<h1> Student form</h1>
 <h3> Please submit your details here</h3>
 <form onSubmit={handlesubmit}>
 <input type="text" placeholder="Enter name" value={name} 

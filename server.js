@@ -1,7 +1,8 @@
 import express from "express";
 import app from "./src/app.js"
 import AppDataSource from "./src/db/datasource.js"
-
+import dotenv from "dotenv";
+dotenv.config();
 
 const startserver= async()=>{
     try{

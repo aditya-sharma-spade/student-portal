@@ -1,5 +1,6 @@
 import "reflect-metadata"
 import {DataSource} from "typeorm"
+import Student from "../entities/student.js"
 import User from "../entities/user.js"
 
 const AppDatasource= new DataSource({
@@ -11,7 +12,7 @@ password: "",
 database: "student_db",
 synchronize: true,
 logging: false,
-entities: [User],     //this will contain all entities we want typeorm to manage
+entities: [Student,User]    //this will contain all entities we want typeorm to manage
 
 }
 )

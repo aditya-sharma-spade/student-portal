@@ -27,11 +27,14 @@ const handleupdate = async(e)=>{
   if(age !== ""){
     updates.age = age;
   }
-
-        const response= await fetch(`http://localhost:3000/users/update/${user.id}`,{
+      const token =
+    localStorage.getItem("token");
+        const response= await fetch(`http://localhost:3000/students/update/${user.id}`,{
           method:"PATCH",
           headers:{
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            Authorization:
+            `Bearer ${token}`
           },
           body:JSON.stringify(updates),
     })
@@ -48,7 +51,7 @@ const handleupdate = async(e)=>{
     
     return(
         <>
-        
+        <div className="update-form">
         
         <input type="text" placeholder="Change name to" value={name}
          onChange={(e)=>{
@@ -68,7 +71,7 @@ const handleupdate = async(e)=>{
          <button type="button" className="otherbutton" onClick={handleupdate}>
          Update your details
         </button>
-        
+        </div>
         </>
     )
 }
