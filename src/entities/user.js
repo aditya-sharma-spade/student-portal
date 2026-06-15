@@ -20,6 +20,10 @@ type: "varchar"
 },
 password:{
 type: "varchar"
+},
+role:{
+    type:"varchar",
+    default:"student"
 }
 }
 })

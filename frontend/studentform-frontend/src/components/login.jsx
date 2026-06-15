@@ -1,9 +1,19 @@
 import {useState} from 'react'
 
-function Login({onLogin,gotoRegister}){
+function Login({onLogin,gotoRegister,gotoForgotPassword}){
    const [email,setemail] = useState("");
 const [password,setpassword] = useState("");
     const handlelogin= async ()=>{
+       if(!email || !password){
+   alert(
+      "Email and password are required"
+   );
+   return;
+}
+if(!email.includes("@")){
+   alert("Invalid email");
+   return;
+}
         try{
 const response = await fetch( "http://localhost:3000/auth/login",
 {
@@ -18,9 +28,14 @@ password
 })}
 )
      const data= await response.json()
+    
+   
      if(data.token){
      localStorage.setItem(
         "token", data.token
+     )
+     localStorage.setItem(
+        "role",data.role
      )
      onLogin();
 }
@@ -53,6 +68,14 @@ return (
     <button type="button"  className="register-btn" onClick={()=>gotoRegister()}>
         Don't have an account? Register
     </button>
+    <button
+   type="button"
+   onClick={()=>
+      gotoForgotPassword()
+   }
+>
+   Forgot Password?
+</button>
     </div>
     </>
    

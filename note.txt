@@ -1,1 +1,4 @@
 {} means evaluate this expression and insert the result here. This is added as a test.
+
+in case of routes and controller, naming is done on basis of what resource is being accessed
+not who is accessing

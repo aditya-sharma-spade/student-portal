@@ -1,27 +1,32 @@
 
 import AppDatasource from "../db/datasource.js"
 import express from "express"
+import {isadmin} from "../middleware/admin.middleware.js"
+
 const router = express.Router()
 
 import {
-  addstudent,
+
   getstudent,
   updatestudent,
-  deletestudent
+  deletestudent,
+  seemyprofile
 } from "../controllers/student.controller.js";
 import { verifyToken } from "../middleware/auth.middleware.js";
 
 
 
-router.post("/add",verifyToken, addstudent);
-router.get("/see", verifyToken, getstudent);
+
+router.get("/see", verifyToken, isadmin, getstudent);
 
 
-router.patch("/update/:index", verifyToken, updatestudent);
+router.patch("/update/:index", verifyToken,isadmin,  updatestudent);
 
 // router.put("/update/:index", updateuser); 
   
 
-router.delete("/delete/:index", verifyToken, deletestudent);
+router.delete("/delete/:index", verifyToken, isadmin, deletestudent);
+
+router.get("/seeme",verifyToken,seemyprofile)
 
 export default router;

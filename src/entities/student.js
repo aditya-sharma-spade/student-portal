@@ -12,22 +12,22 @@ const student= new EntitySchema({
         type: "int"
 
      },
-     name:{
-        type: "varchar"
-     },
-     email:{
-        type: "varchar"
-     },
-     phone:{
-      type: "varchar",
-      nullable: true
-
-     },
-   
      userid:{
       type:"int",
-      nullable:true
-     }
+      nullable:false
+     },
+     course:{
+      type:"varchar",
+     },
+
+    },
+    relations: {
+        user: {
+            type: "many-to-one",
+            target: "User",
+            joinColumn: { name: "userid" },
+            onDelete: "CASCADE"   // deleting User auto-deletes Student
+        }
     }
 }
 )

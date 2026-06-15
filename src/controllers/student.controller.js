@@ -1,31 +1,30 @@
+
 import AppDatasource from "../db/datasource.js"; 
 const studentrepo = AppDatasource.getRepository("Student")
-export const addstudent =  async (req,res)=>{
-try{
-      
-    await studentrepo.save({
-      name: req.body.name,
-      age: req.body.age,
-      email: req.body.email,
-      phone:req.body.phone,
-   
-    subjects:req.body.subjects,
-    userid:req.body.userid
-    })
-    res.status(200).json({
-      message: "Student accepted successfully"
+const userRepo = AppDatasource.getRepository("User")
 
-    })
-}
-catch(error){
-    res.status(500).json({
-        display: error.message
-    })
-}
-}
 export const getstudent=  async(req,res)=>{
 try{
-   const entries= await studentrepo.find();
+   const students= await studentrepo.find();
+   const entries=[];
+
+   for(const student of students){
+
+      const user =
+         await userRepo.findOneBy({
+            id:student.userid
+         });
+
+      entries.push({
+         id:student.id,
+         name:user?.name,
+         email:user?.email,
+         phone:user?.phone,
+         age:student.age,
+         course:student.course
+      });
+   }
+
    res.status(200).json(
       {
         message: "Done successfully",
@@ -44,23 +43,37 @@ catch(error){
 }
 
 
-export const updatestudent=  async(req,res)=>{  //some entry is replaced
-try{ 
-    const vari= req.params.index
+export const updatestudent = async (req, res) => {
+    try {
+        const vari = req.params.index;
+        const { name, email, phone, age, course } = req.body;
 
-await studentrepo.update(vari, req.body)
-res.status(200).json({
-   message: `id ${vari} has been updated successfuly`
+        // Find the student first to get their userid
+        const student = await studentrepo.findOneBy({ id: vari });
+        if (!student) return res.status(404).json({ message: "Student not found" });
 
-}
-)
-}
-catch(error){
- res.status(500).json({
-    message: error.message
- }
- )
-}
+        // Fields that belong to User table
+        const userFields = {};
+        if (name) userFields.name = name;
+        if (email) userFields.email = email;
+        if (phone) userFields.phone = phone;
+
+        // Fields that belong to Student table
+        const studentFields = {};
+        if (age) studentFields.age = age;
+        if (course) studentFields.course = course;
+
+        if (Object.keys(userFields).length)
+            await userRepo.update(student.userid, userFields);
+        
+        if (Object.keys(studentFields).length)
+            await studentrepo.update(vari, studentFields);
+
+        res.status(200).json({ message: `Student ${vari} updated successfully` });
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 }
 /*router.put("/update/:index", async(req,res)=>{ //entire request is replaced
    try{
@@ -97,5 +110,38 @@ res.status(500).json(
 }
 )
 }
+}
+
+export const seemyprofile= async(req,res)=>{
+    try{
+        const currentstudent = await studentrepo.findOneBy({
+             userid:req.user.userid
+        })
+        if(!currentstudent){
+            return res.status(404).json({
+                message: "Student not found"
+            })
+        }
+        const currentuser= await userRepo.findOneBy({
+          id:req.user.userid
+    })
+        
+        
+        res.status(200).json(
+            {
+          
+            name:currentuser.name,
+            email:currentuser.email,
+            phone:currentuser.phone,
+            age:currentstudent.age,
+            course:currentstudent.course
+            }
+        )
+    }
+    catch(error){
+        res.status(500).json(
+        {message: error.message}
+    )
+    }
 }
 

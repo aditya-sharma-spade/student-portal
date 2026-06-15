@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react';
 import UpdateDetails from './updatedetails';
-function SeeUsers({gotoadd}){
+function SeeUsers(){
   const [users,setUsers]=useState([]);
  const[selecteduser,setselecteduser]=useState(null);
   
@@ -14,7 +14,7 @@ function SeeUsers({gotoadd}){
             `Bearer ${token}`
       }})
     const data= await response.json();
-    setUsers(data.entries)
+    setUsers(data.entries || [])      //
     
     }
 catch(error){
@@ -50,9 +50,7 @@ catch(error){
 
 return(
         <>
-        <button className="adduser" onClick={gotoadd}>
-            Add Students
-        </button>
+       
           {selecteduser && (
       <UpdateDetails user={selecteduser} refreshusers={handleusers}/>
     )}
@@ -72,7 +70,7 @@ return(
 
 
        
-        {users.map((user)=>{ //here user is not defined as such, it just implemented by map
+        {users?.map((user)=>{ //here user is not defined as such, it just implemented by map //
             return(
             <tr key= {user.id}>
             <td>{user.id}</td>
