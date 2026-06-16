@@ -69,7 +69,7 @@ return (
         Don't have an account? Register
     </button>
     <button
-   type="button"
+   type="button" className="register-btn"
    onClick={()=>
       gotoForgotPassword()
    }

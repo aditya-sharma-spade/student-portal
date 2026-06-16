@@ -71,21 +71,15 @@ message: error.message
 export const updatesemrecord= async(req,res)=>{
 try{
     const id= req.params.id
-const student =
-   await studentrepo.findOneBy({
-      id: id
-   });
-   if(!student){
-    return res.status(404).json({
-       message:"Student not found"
-    })
-   }
+const { semester, gpa } = req.body;
+    
+   
 if(semester < 1 || semester > 8){
    return res.status(400).json({
       message:"Invalid semester"
    });
 }
-const { semester, gpa } = req.body;
+
 if(gpa < 0 || gpa > 10){
    return res.status(400).json({
       message:"Invalid GPA"

@@ -33,12 +33,14 @@ function Forgotpassword({gotoVerify}){
     
     return(
         <>
-        <input type="text" placeholder="Enter your phone number" value={phone}
+        <div className='login-container'>
+        <input type="text" placeholder="Enter your phone number" className="login-input" value={phone}
         onChange={(e)=>{setphone(e.target.value)}}
         />
-        <button type="submit" onClick={handlesubmit}>
+        <button type="submit" onClick={handlesubmit} className="login-btn">
          Send OTP
         </button>
+        </div>
         </>
     )
 }

@@ -20,8 +20,16 @@ function Registerusers({gotoLogin}){
         alert("All fields are required");
         return;
     }
+const phoneRegex =
+   /^\+91\d{10}$/;
 
-    if(!email.includes("@")){
+if(!phoneRegex.test(phone)){
+   alert(
+      "Phone number must be in format +91XXXXXXXXXX"
+   );
+   return;
+}
+    if(!email.includes("@gmail.com")){
         alert("Please enter a valid email");
         return;
     }

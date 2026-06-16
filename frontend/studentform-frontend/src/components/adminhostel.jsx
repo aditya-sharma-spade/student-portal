@@ -156,16 +156,16 @@ const handleAdd = async()=>{
     return(
         <>
             <h2>Hostel Records</h2>
-           <button
+           <button className="btn-green-add"
    onClick={()=>
       setShowAddForm(!showAddForm)
    }
 >
-   Add Hostel Record
+   Add Hostel Record(+)
 </button>
 
 {showAddForm && 
-<div><input
+<div className="update-form"><input
    placeholder="Student ID"
    value={studentid}
    onChange={(e)=>setStudentid(e.target.value)}
@@ -195,7 +195,7 @@ const handleAdd = async()=>{
 </div>}
 
             {selectedRecord && (
-    <div>
+    <div className="update-form">
 
         <h3>
             Update Hostel Record
@@ -284,7 +284,7 @@ const handleAdd = async()=>{
 
             <td>
 
-                <button
+                <button className="action-btn"
                     onClick={()=>
                         setSelectedRecord(record)
                     }
@@ -292,7 +292,7 @@ const handleAdd = async()=>{
                     Edit
                 </button>
 
-                <button
+                <button className="delete-btn"
                     onClick={()=>
                         handleDelete(record.id)
                     }

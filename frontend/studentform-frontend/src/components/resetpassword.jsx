@@ -48,7 +48,8 @@ const handlesubmit = async(e)=>{
 
 return(
     <>
-   <input
+    <div className="login-container">
+   <input className='login-input'
       type="password"
       placeholder="Enter new password"
       value={newpassword}
@@ -59,12 +60,13 @@ return(
       }
    />
 
-   <button
+   <button className='login-btn'
       type="button"
       onClick={handlesubmit}
    >
       Reset Password
    </button>
+   </div>
 </>
 )
 }

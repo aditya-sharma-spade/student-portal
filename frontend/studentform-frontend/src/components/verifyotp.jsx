@@ -36,13 +36,14 @@ function VerifyOtp({gotoReset,phone}){
     return(
         <>
       
-
-         <input type="text" placeholder="Enter your OTP" value={otp}
+         <div className="login-container">
+         <input type="text" placeholder="Enter your OTP" value={otp} className='login-input'
         onChange={(e)=>{setotp(e.target.value)}}
         />
-        <button type="submit" onClick={handlesubmit}>
+        <button type="submit" onClick={handlesubmit} className='login-btn'>
          Verify OTP
         </button>
+        </div>
         </>
     )
 }

@@ -13,6 +13,7 @@ import AdminSemester from './components/adminsemester.jsx'
 import Forgotpassword from './components/forgotpassword.jsx'
 import Resetpassword from './components/resetpassword.jsx'
 import VerifyOtp from './components/verifyotp.jsx'
+import Changepassword from './components/changepassword.jsx'
 function App() {
   const role= localStorage.getItem("role");
 
@@ -152,6 +153,12 @@ return(
  </button>
  </>
  )}
+<button
+  className="Navbutton"
+  onClick={() => setpage("changepassword")}
+>
+  Change Password
+</button>
  
  <button
           onClick={()=>{
@@ -162,6 +169,7 @@ return(
           }}>
           Logout
           </button>
+          
   </div>
   
   <div className='container'>
@@ -181,6 +189,10 @@ return(
 
 {page==="hosteladmin" &&
    <AdminHostel />
+}
+{
+   page==="changepassword" && 
+   <Changepassword />
 }
  </div>
  </>

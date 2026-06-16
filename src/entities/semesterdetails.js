@@ -2,6 +2,13 @@ import {EntitySchema} from 'typeorm'
 const semesterdetails= new EntitySchema({
 name:"semesterdetails",
 tableName:"semesterdetails",
+  uniques: [
+    {
+      name: "UQ_STUDENT_SEMESTER",
+      columns: ["studentid", "semester"]
+    }
+  ],
+
 columns:{
       id:{
             primary:true,

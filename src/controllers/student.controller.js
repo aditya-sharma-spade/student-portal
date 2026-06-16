@@ -14,7 +14,7 @@ try{
          await userRepo.findOneBy({
             id:student.userid
          });
-
+if (!user || user.role !== "student") continue;
       entries.push({
          id:student.id,
          name:user?.name,
@@ -97,7 +97,20 @@ export const updatestudent = async (req, res) => {
 export const deletestudent =  async(req,res)=>{
 try{
   const vari= req.params.index
-  await studentrepo.delete(vari)
+  
+  const student = await studentrepo.findOne({
+      where: { id: vari }
+    });
+
+    if (!student) {
+      return res.status(404).json({
+        message: "Student not found"
+      });
+    }
+
+    await userRepo.delete(student.userid);
+  
+  
 res.status(200).json({
   message: `Student with id ${vari} deleted successfully`
 }

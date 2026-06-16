@@ -162,16 +162,16 @@ setShowAddForm(false);
     return(
         <>
             <h2>Semester Records</h2>
-           <button
+           <button className="btn-green-add"
    onClick={()=>
       setShowAddForm(!showAddForm)
    }
 >
-   Add Semester Record
+   Add Semester Record(+)
 </button>
 
 {showAddForm && 
-<div><input
+<div className="update-form"><input
    placeholder="Student ID"
    value={studentid}
    onChange={(e)=>
@@ -200,7 +200,7 @@ setShowAddForm(false);
 </div>}
 
             {selectedRecord && (
-                <div>
+                <div className="update-form">
 
                     <h3>
                         Update Semester Record
@@ -226,7 +226,7 @@ setShowAddForm(false);
                             setSelectedRecord({
                                 ...selectedRecord,
                                 gpa:
-                                    Number(e.target.value)
+                                    e.target.value
                             })
                         }
                     />
@@ -285,7 +285,7 @@ setShowAddForm(false);
 
                             <td>
 
-                                <button
+                                <button className="action-btn"
                                     onClick={()=>
                                         setSelectedRecord(
                                             record
@@ -295,7 +295,7 @@ setShowAddForm(false);
                                     Edit
                                 </button>
 
-                                <button
+                                <button className="delete-btn"
                                     onClick={()=>
                                         handleDelete(
                                             record.id

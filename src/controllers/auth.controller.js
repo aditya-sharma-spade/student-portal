@@ -29,13 +29,21 @@ export const registerUser = async(req,res)=>{
             });
         }
 
-        if(!email.includes("@")){
+        if(!email.includes("@gmail.com")){
             return res.status(400).json({
                 message:
                 "Invalid email"
             });
         }
+const phoneRegex =
+   /^\+91\d{10}$/;
 
+if(!phoneRegex.test(phone)){
+   return res.status(400).json({
+      message:
+      "Invalid phone number format"
+   });
+}
         if(password.length < 8){
             return res.status(400).json({
                 message:
