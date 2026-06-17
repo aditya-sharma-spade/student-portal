@@ -171,11 +171,32 @@ const handleAdd = async()=>{
    onChange={(e)=>setStudentid(e.target.value)}
 />
 
-<input
-   placeholder="Hostel"
+<select className='dropdown' 
    value={hostel}
-   onChange={(e)=>setHostel(e.target.value)}
-/>
+   onChange={(e)=>
+      setHostel(e.target.value)
+   }
+>
+   <option value="">
+      Select Hostel
+   </option>
+
+   <option value="A Block">
+      Kazi
+   </option>
+
+   <option value="B Block">
+      Chilika
+   </option>
+
+   <option value="C Block">
+      Dibang
+   </option>
+
+   <option value="D Block">
+      Sunderbans
+   </option>
+</select>
 
 <input
    placeholder="Room Number"

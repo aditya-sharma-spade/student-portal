@@ -101,11 +101,32 @@ onChange={(e)=>{
 setage(e.target.value)
 }}
 />
-<input type="text" placeholder="Enter your course" value={course} className='login-input'
-onChange={(e)=>{
-setcourse(e.target.value)
-}}
-/>
+<select className="login-input"
+   value={course}
+   onChange={(e)=>
+      setcourse(e.target.value)
+   }
+>
+   <option value="">
+      Select Course
+   </option>
+
+   <option value="CSE">
+      CSE
+   </option>
+
+   <option value="AI">
+      AI
+   </option>
+
+   <option value="ECE">
+      ECE
+   </option>
+
+   <option value="ME">
+      Mechanical
+   </option>
+</select>
 <button type="Submit" onClick={handleregister} className="login-btn" >
     Register
 </button>

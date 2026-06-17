@@ -33,12 +33,16 @@ if(data === null){
 }
     return(
      <>
-     <h2> Hostel details</h2>
-     <p>Studentid: {data.studentid}</p>
-     <p>Hostel:{data.hostel}</p>
-      <p> Room Number: {data.roomNumber}</p>
-      <p>Date Allocated: {data.dateAllocated}</p>
-      
+     <h2> My Hostel details</h2>
+     <table className='profile-table'>
+        <thead></thead>
+        <tbody>
+     <tr><th>Studentid:</th><td> {data.studentid}</td></tr>
+     <tr><th>Hostel:</th><td>{data.hostel}</td></tr>
+      <tr><th> Room Number:</th><td> {data.roomNumber}</td></tr>
+      <tr><th>Date Allocated:</th><td> {data.dateAllocated}</td></tr>
+       
+      </tbody></table>
      </>
     )
 }

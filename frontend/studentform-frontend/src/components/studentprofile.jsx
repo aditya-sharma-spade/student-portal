@@ -25,18 +25,20 @@ function Studentprofile(){
         return(
          <>
          <h2> Your details</h2>
-         <p>
-            Name: {data.name}
-            <br />
-            Email: {data.email}
-            <br />
-             Phone: {data.phone}
-            <br />
-             Age: {data.age}
-            <br />
-             Course: {data.course}
+         <table className='profile-table'><thead></thead>
+            <tbody>
+            <tr><th>Name:</th> <td>{data.name}</td></tr>
+           
+            <tr><th>Email:</th><td> {data.email}</td></tr>
             
-         </p>
+             <tr><th>Phone:</th><td> {data.phone}</td></tr>
+            
+             <tr><th>Age:</th><td> {data.age}</td></tr>
+            
+             <tr><th>Course:</th><td> {data.course}</td></tr>
+            </tbody>
+        
+         </table>
          </>
         )
          
