@@ -181,19 +181,19 @@ const handleAdd = async()=>{
       Select Hostel
    </option>
 
-   <option value="A Block">
+   <option value="Kazi">
       Kazi
    </option>
 
-   <option value="B Block">
+   <option value="Chilika">
       Chilika
    </option>
 
-   <option value="C Block">
+   <option value="Dibang">
       Dibang
    </option>
 
-   <option value="D Block">
+   <option value="D Sunderbans">
       Sunderbans
    </option>
 </select>
