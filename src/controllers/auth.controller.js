@@ -223,7 +223,7 @@ message:error.message
 
 export const sendOtp = async(req,res)=>{
     try{
-console.log("controller reached") //
+
         const phone = req.body.phone;
 
         await client.verify.v2

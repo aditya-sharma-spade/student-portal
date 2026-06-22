@@ -14,6 +14,7 @@ import Forgotpassword from './components/forgotpassword.jsx'
 import Resetpassword from './components/resetpassword.jsx'
 import VerifyOtp from './components/verifyotp.jsx'
 import Changepassword from './components/changepassword.jsx'
+import logo from "./assets/spade_logo.png";
 function App() {
   const role= localStorage.getItem("role");
 
@@ -107,9 +108,12 @@ if(!loggedIn){
 }
 return(
   <>
+  <div className="topbar">
+  <img src={logo} alt="Student-portal-logo" className="logo" />
   <h1 className="title">
   Student Portal Management System
 </h1>
+</div>
   <div className='Navbar'>
  
  {

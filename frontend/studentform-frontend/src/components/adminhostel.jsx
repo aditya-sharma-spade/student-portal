@@ -116,7 +116,14 @@ const handleAdd = async()=>{
     };
 
     const handleUpdate = async()=>{
-
+if(
+   !selectedRecord.hostel ||
+   !selectedRecord.roomNumber ||
+   !selectedRecord.dateAllocated
+){
+   alert("Please fill all fields");
+   return;
+}
         const token =
             localStorage.getItem("token");
 
@@ -181,8 +188,8 @@ const handleAdd = async()=>{
       Select Hostel
    </option>
 
-   <option value="Kazi">
-      Kazi
+   <option value="Kaziranga">
+      Kaziranga
    </option>
 
    <option value="Chilika">
@@ -193,7 +200,7 @@ const handleAdd = async()=>{
       Dibang
    </option>
 
-   <option value="D Sunderbans">
+   <option value="Sunderbans">
       Sunderbans
    </option>
 </select>
@@ -222,17 +229,19 @@ const handleAdd = async()=>{
             Update Hostel Record
         </h3>
 
-        <input
-            type="text"
-            value={selectedRecord.hostel}
-            onChange={(e)=>
-                setSelectedRecord({
-                    ...selectedRecord,
-                    hostel:e.target.value
-                })
-            }
-        />
-
+       <select value={selectedRecord.hostel} className="dropdown"
+       onChange={(e)=>{
+ setSelectedRecord({
+            ...selectedRecord,
+            hostel: e.target.value
+        })
+       }}>
+    <option value="">Select Hostel</option>
+    <option value="Dibang">Dibang</option>
+    <option value="Sunderbans">Sunderbans</option>
+    <option value="Chilika">Chilika</option>
+    <option value="Kaziranga">Kaziranga</option>
+</select>
         <input
             type="text"
             value={selectedRecord.roomNumber}
